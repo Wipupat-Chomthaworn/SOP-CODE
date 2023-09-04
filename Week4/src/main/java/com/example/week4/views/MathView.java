@@ -54,7 +54,7 @@ public class MathView extends VerticalLayout {
         btnMinus.addClickListener(event -> {
             double num1 = Double.parseDouble(n1.getValue());
             double num2 = Double.parseDouble(n2.getValue());
-            String out = WebClient.create() // สร้างช
+            String out = WebClient.create() // สร้างชองเช่อม
                     .get() // กําหนดรูปแบบการสื3อสาร
                     .uri("http://localhost:8080/minus/" + num1 + "/" + num2) // กา
                     .retrieve() // ให้รอรับข้อมูลกลับมา

@@ -33,7 +33,7 @@ public class MathAPI {
 
     }
 
-    @RequestMapping("/mod/{n1}/{n2}")
+    @GetMapping("/mod/{n1}/{n2}")
     public Double myMod(@PathVariable("n1") Double n1, @PathVariable("n2") Double n2) {
         return n1 % n2;
 
