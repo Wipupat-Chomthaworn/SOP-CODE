@@ -1,10 +1,12 @@
-package com.example.week5;
+package com.example.week5.Consumer;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
+
 @Service
-public class SentenceConsumer {
+public class SentenceConsumer implements Serializable {
     protected Sentence sentences;
 
     public SentenceConsumer() {

@@ -1,4 +1,4 @@
-package com.example.week5;
+package com.example.week5.Consumer;
 
 import java.io.Serializable;
 import java.util.ArrayList;

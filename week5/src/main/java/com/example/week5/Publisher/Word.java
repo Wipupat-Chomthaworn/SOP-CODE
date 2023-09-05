@@ -1,4 +1,4 @@
-package com.example.week5;
+package com.example.week5.Publisher;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,4 +20,5 @@ public class Word {
         goodWords.add("enjoy");
         goodWords.add("life");
     }
+
 }
