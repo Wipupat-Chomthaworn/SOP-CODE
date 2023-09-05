@@ -10,7 +10,22 @@
 			"name": "Get change",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/getChange/99",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"getChange",
+						"99"
+					]
+				}
 			},
 			"response": []
 		}

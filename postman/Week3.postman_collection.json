@@ -10,7 +10,18 @@
 			"name": "test",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					]
+				}
 			},
 			"response": []
 		},
@@ -18,7 +29,20 @@
 			"name": "sum req",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/add/1/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"add",
+						"1",
+						"5"
+					]
+				}
 			},
 			"response": []
 		},
@@ -26,7 +50,20 @@
 			"name": "minus req",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/minus/1/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"minus",
+						"1",
+						"5"
+					]
+				}
 			},
 			"response": []
 		},
@@ -34,7 +71,28 @@
 			"name": "multiply req",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/multiply?fn=2&ln=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"multiply"
+					],
+					"query": [
+						{
+							"key": "fn",
+							"value": "2"
+						},
+						{
+							"key": "ln",
+							"value": "5"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -42,7 +100,28 @@
 			"name": "devide req",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/devide?fn=2&ln=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"devide"
+					],
+					"query": [
+						{
+							"key": "fn",
+							"value": "2"
+						},
+						{
+							"key": "ln",
+							"value": "5"
+						}
+					]
+				}
 			},
 			"response": []
 		}

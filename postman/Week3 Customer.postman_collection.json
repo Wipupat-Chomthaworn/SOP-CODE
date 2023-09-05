@@ -10,7 +10,18 @@
 			"name": "get customers",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customers"
+					]
+				}
 			},
 			"response": []
 		},
@@ -18,7 +29,19 @@
 			"name": "get cus by id",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customerbyid/1010",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customerbyid",
+						"1010"
+					]
+				}
 			},
 			"response": []
 		},
@@ -26,23 +49,59 @@
 			"name": "get cus by name",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customerbyname/Emma",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customerbyname",
+						"Emma"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "del cus by ID",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customerDelByid/1001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customerDelByid",
+						"1001"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "del cus by Name",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customerDelByname/John",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customerDelByname",
+						"John"
+					]
+				}
 			},
 			"response": []
 		},
