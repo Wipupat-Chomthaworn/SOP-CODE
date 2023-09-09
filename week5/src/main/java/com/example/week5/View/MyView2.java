@@ -28,7 +28,8 @@ public class MyView2 extends HorizontalLayout {
     private ComboBox<String> gw,bw;
 
     private Word word = new Word();
-//    private Notification notification = new Notification();
+    private Notification notification = new Notification();
+
 
 
     public MyView2() {
@@ -69,19 +70,19 @@ public class MyView2 extends HorizontalLayout {
         btn2.addClickListener(event -> {
             ArrayList<String> item = WebClient.create().post().uri("http://localhost:8080/addBad/"+tfW.getValue()).retrieve().bodyToMono(new ParameterizedTypeReference<ArrayList<String>>() {
             }).block();
+            new Notification("add bad", 3000).open();
 
             bw.setItems(item);
 
         });
 
         btn3.addClickListener(event -> {
-            String item = String.valueOf(WebClient.create().post().uri("http://localhost:8080/proof/"+tfS.getValue()).retrieve().bodyToMono(new ParameterizedTypeReference<ArrayList<String>>() {
-            }).block());
+            String item = WebClient.create().post().uri("http://localhost:8080/proof/"+tfS.getValue()).retrieve().bodyToMono(String.class).block();
 //            notification.open();
-            new Notification("proof", 3000).open();
+            new Notification(item, 3000).open();
 //            notification.show("proof :");
             System.out.println(item);
-            System.out.println(item.toString());
+            System.out.println("bbb" + item.toString());
 //            bw.setItems(item);
 
         });
