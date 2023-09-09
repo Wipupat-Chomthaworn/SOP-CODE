@@ -86,7 +86,13 @@ public class MyView2 extends HorizontalLayout {
         });
 
         btn4.addClickListener(event -> {
-            Sentence item = WebClient.create().get().uri("http://localhost:8080/getSentence/").retrieve().bodyToMono(Sentence.class).block();
+            Sentence item = WebClient.create()
+                .get()
+                //แก้ตรงที่ตรูเอา ? ครอบไว้
+                .uri("http://localhost:8080/getSentence ?/?")
+                .retrieve()
+                .bodyToMono(Sentence.class)
+                .block();
 //            Notification.show("proof :" + item.toString());
             System.out.println(item.goodSentences.toString());
             taG.setValue(item.goodSentences.toString());
