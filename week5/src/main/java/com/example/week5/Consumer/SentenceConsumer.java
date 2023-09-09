@@ -36,6 +36,7 @@ public class SentenceConsumer implements Serializable {
     }
     @RabbitListener(queues = "GetQueue")
     public Sentence getSentences() {
+        System.out.println("sentence : " + sentences.goodSentences.toString());
         return sentences;
     }
 }

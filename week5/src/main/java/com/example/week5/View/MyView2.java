@@ -28,7 +28,7 @@ public class MyView2 extends HorizontalLayout {
     private ComboBox<String> gw,bw;
 
     private Word word = new Word();
-    private Notification notification = new Notification();
+//    private Notification notification = new Notification();
 
 
     public MyView2() {
@@ -77,8 +77,9 @@ public class MyView2 extends HorizontalLayout {
         btn3.addClickListener(event -> {
             String item = String.valueOf(WebClient.create().post().uri("http://localhost:8080/proof/"+tfS.getValue()).retrieve().bodyToMono(new ParameterizedTypeReference<ArrayList<String>>() {
             }).block());
-            notification.open();
-            notification.show("proof :" + item.toString());
+//            notification.open();
+            new Notification("proof", 3000).open();
+//            notification.show("proof :");
             System.out.println(item);
             System.out.println(item.toString());
 //            bw.setItems(item);
@@ -86,8 +87,8 @@ public class MyView2 extends HorizontalLayout {
         });
 
         btn4.addClickListener(event -> {
-            Sentence item = WebClient.create().get().uri("http://localhost:8080/getSentence/").retrieve().bodyToMono(Sentence.class).block();
-//            Notification.show("proof :" + item.toString());
+            Sentence item = WebClient.create().get().uri("http://localhost:8080/getSentence").retrieve().bodyToMono(Sentence.class).block();
+//            notification.show("proof :" + item.toString());
             System.out.println(item.goodSentences.toString());
             taG.setValue(item.goodSentences.toString());
             taB.setValue(item.badSentences.toString());
