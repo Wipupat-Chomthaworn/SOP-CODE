@@ -88,8 +88,8 @@ public class MyView2 extends HorizontalLayout {
         btn4.addClickListener(event -> {
             Sentence item = WebClient.create()
                 .get()
-                //แก้ตรงที่ตรูเอา ? ครอบไว้
-                .uri("http://localhost:8080/getSentence ?/?")
+                //uri ผิด ถ้าไม่มีการส่ง variable ก็ไม่ต้องมี /
+                .uri("http://localhost:8080/getSentence")
                 .retrieve()
                 .bodyToMono(Sentence.class)
                 .block();
