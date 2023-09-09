@@ -1,5 +1,6 @@
 package com.example.week5.Publisher;
 
+import com.example.week5.Consumer.Sentence;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
+// this is controller
 public class WordPublisher {
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -16,7 +18,7 @@ public class WordPublisher {
         this.words = new Word();
     }
 
-    @RequestMapping(value = "/addBad/{word}", method = RequestMethod.GET)
+    @RequestMapping(value = "/addBad/{word}", method = RequestMethod.POST)
     public ArrayList<String> addBadWord(@PathVariable("word") String s) {
         words.badWords.add(s);
         System.out.println("add badword");
@@ -30,7 +32,7 @@ public class WordPublisher {
         return words.badWords;
     }
 
-    @RequestMapping("/addGood/{word}")
+    @PostMapping("/addGood/{word}")
     public ArrayList<String> addGoodWord(@PathVariable("word") String s) {
         words.goodWords.add(s);
         System.out.println("add goodword");
@@ -44,7 +46,15 @@ public class WordPublisher {
         return words.goodWords;
     }
 
-    @GetMapping("/proof/{sentence}")
+    @GetMapping("/getSentence")
+    public Sentence getSentence() {
+        return (Sentence) rabbitTemplate.convertSendAndReceive("Direct", "get", "");
+
+    }
+
+    ;
+
+    @PostMapping("/proof/{sentence}")
     public String proofSentence(@PathVariable("sentence") String s
 //    @PathVariable("n1") Double n1, @PathVariable("n2") Double n2
     ) {

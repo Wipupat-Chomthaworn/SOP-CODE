@@ -1,17 +1,23 @@
 package com.example.week5.Consumer;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 
 @Service
+// this is service
 public class SentenceConsumer implements Serializable {
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
     protected Sentence sentences;
 
     public SentenceConsumer() {
         this.sentences = new Sentence();
     }
+
 
     @RabbitListener(queues = "BadWordQueue")
     public void addBadSentence(String s) {
@@ -27,5 +33,9 @@ public class SentenceConsumer implements Serializable {
         for (String i : sentences.goodSentences) {
             System.out.println("good sen: " + i);
         }
+    }
+    @RabbitListener(queues = "GetQueue")
+    public Sentence getSentences() {
+        return sentences;
     }
 }
