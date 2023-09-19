@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data // เพื)อบง่ บอกว่าคลาสนีDเป็น Plain Old Java Object (POJO)
 @Document("Wizard") // เพื)อกาํ หนด collection name ที)คลาสนีDจะเป็น Data Model
 public class Wizard implements Serializable {
-    @Id // ใช้บง่ บอกว่าแอททริบิวใดเป็นคีย์ และสร้างให้รองรบั ObjectId ของ MongoDB
+    @Id // ใช้บง่ บอกว่าแอททริบิวใดเป็นคีย์ และสร้างให้รองรบั ObjectId ของ MongoDB โดยmapค่าเป็นprimary key ในcacheให้ด้วย
     private String _id;
     private String sex;
     private String name;
