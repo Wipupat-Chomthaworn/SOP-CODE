@@ -34,6 +34,7 @@ public class Wizard implements Serializable {
 
 
     }
+    //no need to create setter getter it will create automatically (may cause error)
 
     public String get_id() {
         return _id;
