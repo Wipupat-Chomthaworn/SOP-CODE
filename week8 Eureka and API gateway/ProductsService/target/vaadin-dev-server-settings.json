@@ -1,0 +1,17 @@
+{
+  "frontendFolder": "/Users/wipupat/Documents/GitHub/SOP-CODE/ProductsService/./frontend",
+  "themeFolder": "themes",
+  "themeResourceFolder": "/Users/wipupat/Documents/GitHub/SOP-CODE/ProductsService/./frontend/generated/jar-resources",
+  "staticOutput": "/Users/wipupat/Documents/GitHub/SOP-CODE/ProductsService/target/classes/META-INF/VAADIN/webapp/VAADIN/static",
+  "generatedFolder": "generated",
+  "statsOutput": "/Users/wipupat/Documents/GitHub/SOP-CODE/ProductsService/target/classes/META-INF/VAADIN/config",
+  "frontendBundleOutput": "/Users/wipupat/Documents/GitHub/SOP-CODE/ProductsService/target/classes/META-INF/VAADIN/webapp",
+  "devBundleOutput": "/Users/wipupat/Documents/GitHub/SOP-CODE/ProductsService/src/main/dev-bundle/webapp",
+  "devBundleStatsOutput": "/Users/wipupat/Documents/GitHub/SOP-CODE/ProductsService/src/main/dev-bundle/config",
+  "jarResourcesFolder": "/Users/wipupat/Documents/GitHub/SOP-CODE/ProductsService/./frontend/generated/jar-resources",
+  "themeName": "",
+  "clientServiceWorkerSource": "/Users/wipupat/Documents/GitHub/SOP-CODE/ProductsService/target/sw.ts",
+  "pwaEnabled": false,
+  "offlineEnabled": false,
+  "offlinePath": "'offline.html'"
+}
