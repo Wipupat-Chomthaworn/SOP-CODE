@@ -79,9 +79,62 @@ public class ProductView extends VerticalLayout {
         notification.setText(status ? "Added" : "something not found");
         notification.open();
         loadProduct();
-//        clear();
+//        clearInput();
+    }
+    public void updateProduct() {
+        getPrice();
+        Product newProduct = new Product(this.product.get_id(), this.tfPName.getValue(), this.tfPCost.getValue(), this.tfPProfit.getValue(), this.tfPPrice.getValue());
+        boolean status = WebClient.create().post().uri("http://localhost:8080/updateProduct")
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(newProduct)
+                .retrieve().bodyToMono(boolean.class).block();
+        notification.setText(status ? "Updated" : "something not found");
+        notification.open();
+        clearInput();
+        loadProduct();
+    }
+    public void delProduct() {
+        getPrice();
+        Product newProduct = new Product(this.product.get_id(), this.tfPName.getValue(), this.tfPCost.getValue(), this.tfPProfit.getValue(), this.tfPPrice.getValue());
+        boolean status = WebClient.create().post().uri("http://localhost:8080/deleteProduct")
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(newProduct)
+                .retrieve().bodyToMono(boolean.class).block();
+        notification.setText(status ? "Deleted" : "something not found");
+        notification.open();
+        loadProduct();
+        clearInput();
     }
 
+    public void clearInput() {
+        setText("", 0.0, 0.0, 0.0);
+
+    }
+
+    public void setText(String name, Double tfPCost, Double tfPProfit, Double tfPPrice) {
+        this.tfPName.setValue(name);
+        this.tfPCost.setValue(ProductView.this.tfPCost);
+        this.tfPProfit.setValue(ProductView.this.tfPProfit);
+        this.tfPPrice.setValue(ProductView.this.tfPPrice);
+    }
+
+    public void loadProduct() {
+        this.products = WebClient.create()
+                .get()
+                .uri("http://localhost:8080/getProductAll")
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<Product>>() {
+                })
+                .block();
+        updateComboBox();
+
+    }
+    public void updateComboBox() {
+        List<String> productNames = this.products.stream()
+                .map(Product::getProductName)
+                .collect(Collectors.toList());
+        this.cbPL.setItems(productNames);
+    }
 
 
 }
