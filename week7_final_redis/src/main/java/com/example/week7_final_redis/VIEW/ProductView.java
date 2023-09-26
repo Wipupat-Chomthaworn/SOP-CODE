@@ -1,5 +1,6 @@
 package com.example.week7_final_redis.VIEW;
 
+import com.example.week7_final_redis.ProductService.POJO.Product;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
@@ -10,6 +11,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import org.springframework.http.MediaType;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Route("week7.2")
 public class ProductView extends VerticalLayout {
@@ -52,14 +55,33 @@ public class ProductView extends VerticalLayout {
             tfPPrice.setValue(0.0);
 //            notification.open();
         });
-        this.tfPCost.addKeyPressListener(Key.ENTER, e -> {});
+        //to Press enter
+        this.tfPCost.addKeyPressListener(Key.ENTER, e -> {
+            getPrice();
+        });
+        this.tfPProfit.addKeyPressListener(Key.ENTER, e -> {
+            getPrice();
+        });
     }
     public void getPrice() {
-        Double cost = this.pCost.getValue();
-        Double profit = this.pProfit.getValue();
+        Double cost = this.tfPCost.getValue();
+        
         Double out = WebClient.create().get().uri("http://localhost:8080/getPrice/" + cost + "/" + profit).retrieve().bodyToMono(Double.class).block();
-        this.pPrice.setValue(out);
+        this.tfPPrice.setValue(out);
     }
+    public void addProduct() {
+        getPrice();
+        Product newProduct = new Product(null, tfPName.getValue(), this.tfPCost.getValue(), this.tfPProfit.getValue(), this.tfPPrice.getValue());
+        boolean status = WebClient.create().post().uri("http://localhost:8080/addProduct")
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(newProduct)
+                .retrieve().bodyToMono(boolean.class).block();
+        notification.setText(status ? "Added" : "something not found");
+        notification.open();
+        loadProduct();
+//        clear();
+    }
+
 
 
 }
