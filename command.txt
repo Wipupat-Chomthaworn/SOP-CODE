@@ -1,0 +1,3 @@
+Use ls -a to show all hidden file
+
+To del .git use rm -rf .git
