@@ -114,7 +114,7 @@ public class ProductView extends VerticalLayout {
         System.out.println("add");
         clearInput();
         loadProduct();
-//
+
     }
     public void updateProduct() {
         getPrice();
