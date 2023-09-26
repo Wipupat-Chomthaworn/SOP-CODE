@@ -1,6 +1,7 @@
 package com.example.week7_final_redis.ProductService.CONTROLLER;
 
 import com.example.week7_final_redis.ProductService.POJO.Product;
+import com.example.week7_final_redis.ProductService.REPOSITORY.ProductService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class ProductController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
+//    @Autowired
+//    private ProductService
 
     @RequestMapping(value = "/addProduct", method = POST)
     public boolean addProduct(@RequestBody Product product){

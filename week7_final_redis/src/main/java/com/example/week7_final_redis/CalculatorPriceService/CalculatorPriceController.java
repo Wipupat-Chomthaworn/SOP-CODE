@@ -12,7 +12,7 @@ public class CalculatorPriceController {
     private CalculatorPriceService calPriceService;
 
     @RequestMapping(value = "/getPrice/{cost}/{profit}")
-    public Double serviceGetProducts(@PathVariable Double cost, @PathVariable Double profit){
+    public Double getPrice(@PathVariable Double cost, @PathVariable Double profit){
         return calPriceService.getPrice(cost, profit);
     }
 }

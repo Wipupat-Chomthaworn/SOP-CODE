@@ -55,6 +55,7 @@ public class ProductService {
         }
     }
     @Cacheable(value="Product", key="'Product'")
+    @RabbitListener(queues = "GetAllProductQueue")
     public List<Product> getAllProduct(){
         try{
 

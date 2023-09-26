@@ -11,12 +11,19 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Route("week7.2")
 public class ProductView extends VerticalLayout {
-    private ComboBox cbPL;
+    private Product product;
+    private List<Product> products;
+
+    private ComboBox<String> cbPL;
     private TextField tfPName;
     private NumberField tfPCost;
     private NumberField tfPProfit;
@@ -26,7 +33,8 @@ public class ProductView extends VerticalLayout {
     private Notification notification;
 
     public ProductView() {
-        this.cbPL = new ComboBox<>();
+        this.notification = new Notification("", 2000);
+        this.cbPL = new ComboBox<String>();
         this.tfPName = new TextField("Product Name", "");
         this.tfPCost = new NumberField("Product Cost");
         tfPCost.setValue(0.0);
@@ -62,10 +70,35 @@ public class ProductView extends VerticalLayout {
         this.tfPProfit.addKeyPressListener(Key.ENTER, e -> {
             getPrice();
         });
+        addP.addClickListener(event -> {
+            addProduct();
+        });
+        upP.addClickListener(event -> {
+            updateProduct();
+        });
+        delP.addClickListener(event -> {
+            delProduct();
+        });
+        clearP.addClickListener(e -> {
+            clearInput();
+        });
+        cbPL.addValueChangeListener(event -> {
+            String productName = this.cbPL.getValue();
+            this.product = WebClient.create().get().uri("http://localhost:8080/getProductByName/"+productName).retrieve().bodyToMono(Product.class).block();
+            if (this.product != null) {
+                this.tfPName.setValue(this.product.getProductName());
+                this.tfPCost.setValue(this.product.getProductCost());
+                this.tfPProfit.setValue(this.product.getProductProfit());
+                this.tfPPrice.setValue(this.product.getProductPrice());
+            }
+        });
+        loadProduct();
+        clearInput();
     }
     public void getPrice() {
         Double cost = this.tfPCost.getValue();
-        
+        Double profit = this.tfPProfit.getValue();
+
         Double out = WebClient.create().get().uri("http://localhost:8080/getPrice/" + cost + "/" + profit).retrieve().bodyToMono(Double.class).block();
         this.tfPPrice.setValue(out);
     }
@@ -78,8 +111,10 @@ public class ProductView extends VerticalLayout {
                 .retrieve().bodyToMono(boolean.class).block();
         notification.setText(status ? "Added" : "something not found");
         notification.open();
+        System.out.println("add");
+        clearInput();
         loadProduct();
-//        clearInput();
+//
     }
     public void updateProduct() {
         getPrice();
@@ -111,11 +146,11 @@ public class ProductView extends VerticalLayout {
 
     }
 
-    public void setText(String name, Double tfPCost, Double tfPProfit, Double tfPPrice) {
+    public void setText(String name, Double Cost, Double Profit, Double Price) {
         this.tfPName.setValue(name);
-        this.tfPCost.setValue(ProductView.this.tfPCost);
-        this.tfPProfit.setValue(ProductView.this.tfPProfit);
-        this.tfPPrice.setValue(ProductView.this.tfPPrice);
+        this.tfPCost.setValue(Cost);
+        this.tfPProfit.setValue(Profit);
+        this.tfPPrice.setValue(Price);
     }
 
     public void loadProduct() {

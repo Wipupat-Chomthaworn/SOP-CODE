@@ -1,0 +1,10 @@
+[{
+  "_id": {
+    "$oid": "65127bac26439100429ccaa0"
+  },
+  "productName": "3",
+  "productCost": 123,
+  "productProfit": 432,
+  "productPrice": 32,
+  "_class": "com.example.week7_final_redis.ProductService.POJO.Product"
+}]

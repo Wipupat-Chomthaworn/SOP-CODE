@@ -16,6 +16,11 @@ public class Product implements Serializable {
     private double productProfit;
     private double productPrice;
 
+    public Product() {
+        this(null, "", 0.0, 0.0, 0.0);
+
+    }
+
     public Product(String _id, String productName, double productCost, double productProfit, double productPrice) {
         this._id = _id;
         this.productName = productName;
@@ -23,4 +28,5 @@ public class Product implements Serializable {
         this.productProfit = productProfit;
         this.productPrice = productPrice;
     }
+
 }
