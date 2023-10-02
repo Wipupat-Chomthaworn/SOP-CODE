@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 public class CreateProductRestModel {
     private String title;
     private BigDecimal price;
-    private Integer quatity;
+    private Integer quantity;
 
 
 }

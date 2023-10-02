@@ -3,35 +3,48 @@ package com.example.productsservice.rest;
 import com.example.productsservice.command.CreateProductCommand;
 import org.atmosphere.config.service.Get;
 import org.atmosphere.config.service.Put;
+import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
+import java.util.UUID;
+//import static com.fasterxml.jackson.databind.jsonFormatVisitors.JsonValueFormat.UUID;
 
 @RestController
 @RequestMapping("/products")
 public class ProductsController {
     private final Environment env;
     private final CommandGateway commandGateway;
+
     @Autowired
-    public ProductController(Environment env, CommandGateway commandGateway){
+    public ProductsController(Environment env, CommandGateway commandGateway){
         this.env = env;
-        this.commandGateway;
-
-
+        this.commandGateway = commandGateway;
     }
 
-    public ProductsController(Environment env){
-        this.env = env;
-    }
+//    public ProductsController(Environment env){
+//        this.env = env;
+//    }
 
     @PostMapping
-    public String createProduct(@RequestBody CreateProductRestMode model){
+    public String createProduct(@RequestBody CreateProductRestModel model){
         CreateProductCommand command = CreateProductCommand.builder()
-                .productId(UUID.radomUUID().toString())
+                .productId(UUID.randomUUID().toString())
                 .title(model.getTitle())
+                .price(model.getPrice())
+                .quantity(model.getQuantity())
+                .build();
+
+        String result;
+        try {
+            result = commandGateway.sendAndWait(command);
+        } catch (Exception e) {
+            result = e.getLocalizedMessage();
+        }
+        return result;
 
 
-        return "HTTP POST handled";
+//        return "HTTP POST handled";
     }
     @GetMapping
     public String getProduct(){
