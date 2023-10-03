@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "73d2437e-4f40-4629-b937-53a2101fc030",
+		"name": "Week9",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28799940"
+	},
+	"item": [
+		{
+			"name": "req product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"iPhone 15 pro max (128gb, gold)\",\n    \"price\": 39000,\n    \"quantity\":10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/product-service/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"product-service",
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
