@@ -1,13 +1,12 @@
 package com.example.productsservice.command;
 
-import com.example.productsservice.event.ProductCreatedEvent;
+import com.example.productsservice.core.events.ProductCreatedEvent;
 import org.springframework.beans.BeanUtils;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
-import org.springframework.beans.BeanUtils;
 
 import java.math.BigDecimal;
 
