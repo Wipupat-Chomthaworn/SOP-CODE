@@ -1,8 +1,6 @@
-package com.example.productsservice.rest;
+package com.example.productsservice.command.rest;
 
 import com.example.productsservice.command.CreateProductCommand;
-import org.atmosphere.config.service.Get;
-import org.atmosphere.config.service.Put;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -12,12 +10,12 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/products")
-public class ProductsController {
+public class ProductsCommandController {
     private final Environment env;
     private final CommandGateway commandGateway;
 
     @Autowired
-    public ProductsController(Environment env, CommandGateway commandGateway){
+    public ProductsCommandController(Environment env, CommandGateway commandGateway){
         this.env = env;
         this.commandGateway = commandGateway;
     }
@@ -46,17 +44,17 @@ public class ProductsController {
 
 //        return "HTTP POST handled";
     }
-    @GetMapping
-    public String getProduct(){
-        return "HTTP GET handled" + env.getProperty("local.server.port");
-    }
-    @PutMapping
-    public String updateProduct(){
-        return "HTTP PUT handled";
-    }
-    @DeleteMapping
-    public String deleteProduct(){
-        return "HTTP DELETE handled";
-    }
+//    @GetMapping
+//    public String getProduct(){
+//        return "HTTP GET handled" + env.getProperty("local.server.port");
+//    }
+//    @PutMapping
+//    public String updateProduct(){
+//        return "HTTP PUT handled";
+//    }
+//    @DeleteMapping
+//    public String deleteProduct(){
+//        return "HTTP DELETE handled";
+//    }
 
 }
