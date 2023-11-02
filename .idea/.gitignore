@@ -1,3 +1,11 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+# Ignore JAR files
+*.jar
+
+# Ignore SNAPSHOT files
+*SNAPSHOT*
+
+# Ignore events files
+events/

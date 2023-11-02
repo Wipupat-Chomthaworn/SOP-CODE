@@ -1,0 +1,33 @@
+package com.example.productsservice.query;
+
+
+import com.example.productsservice.core.data.ProductEntity;
+import com.example.productsservice.core.data.ProductRepository;
+import com.example.productsservice.core.events.ProductCreatedEvent;
+import org.axonframework.eventhandling.EventHandler;
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ProductEventsHandler {
+
+    private final ProductRepository productRepository;
+
+    public ProductEventsHandler(ProductRepository productRepository){
+        this.productRepository = productRepository;
+    }
+
+    @EventHandler
+    public void on(ProductCreatedEvent event){
+        ProductEntity productEntity = new ProductEntity();
+        BeanUtils.copyProperties(event, productEntity);
+        productRepository.save(productEntity);
+    }
+    @EventHandler
+    public void  on(ProductRepository event){
+        // !!!!!!
+        ProductEntity productEntity = productRepository.findByProductId(event.getProductId());
+        productEntity.setQuantity(productEntity.getQuantity() - event.getQuatity());
+        productRepository.save(productEntity);
+    }
+}
